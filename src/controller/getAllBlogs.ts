@@ -1,14 +1,26 @@
-import { Request, Response } from "express"
-import { db } from '../config/db';
-import { Post } from "../models/Posts";
+import { Request, Response } from 'express'
+import { db } from '../config/db'
+import { Post } from '../models/Posts'
 
 export async function getAllBlogs(req: Request, res: Response) {
 
-  db.query("SELECT * FROM blogs", (err: Error, result: Post[]) => {
-    if(err) {
-      res.status(500).json({ error: 'Internal server error' });
-    } else {
-      res.send(result)
-    }
-  })
+  const { category } = req.body
+
+  if(category) {
+    db.query(`SELECT * FROM blogs WHERE category = \"${category}\" ORDER BY createdDate DESC, title ASC`, (err: Error, result: Post[]) => {
+      if(err) {
+        res.status(500).json({ error: 'Internal server error' })
+      } else {
+        res.send(result)
+      }
+    })
+  } else {
+    db.query('SELECT * FROM blogs ORDER BY createdDate DESC, title ASC', (err: Error, result: Post[]) => {
+      if(err) {
+        res.status(500).json({ error: 'Internal server error' })
+      } else {
+        res.send(result)
+      }
+    })
+  }
 }

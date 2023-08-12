@@ -11,8 +11,9 @@ export function getBlogsById(req: Request, res: Response) {
       res.status(500).json({ error: 'Internal server error' });
     } else {
       if(result.length === 0) {
-        res.status(404).json({ error: 'Blog not found' });
+        res.json({ info: 'Blog ID not found' });
       } else {
+        console.log(result)
         res.send(result)
       }
     }

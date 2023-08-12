@@ -1,6 +1,7 @@
 export interface Post {
-    id          : number;
-    title       : string;
-    content     : string;
-    createdDate : Date;
+    id          : number
+    title       : string
+    content     : string
+    createdDate : Date
+    category    : string
 }
