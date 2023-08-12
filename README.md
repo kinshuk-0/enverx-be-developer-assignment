@@ -1,52 +1,133 @@
-[![N|Solid](https://iili.io/Hi9giog.png)](https://www.enverx.com/)
+# Blog App ~ Assignment For Backend Developer Role
 
-EnverX offers a simple and convenient platform to fund early-stage projects
-and trade future carbon credits.
 
-## _Assginment For Backend Developer Role_
 
-### Instructions
-``` diff
-- Fork this repository
-- Take a fresh `pull`
-- Create a `development` branch
-- `Push` the updated code after task completion
-Note: Make sure to add proper `commit` messages
+ ## Project Setup Instructions
+ **Prerequisites**
+
+- Node.js and npm: Make sure you have Node.js and npm (Node Package Manager) installed on your system. You can download and install them from nodejs.org.
+
+- MySQL Database: You'll need a MySQL database to store blog posts. Install MySQL and set up a database with appropriate credentials.
+
+**Installation**
+- Clone the Repository: Start by cloning the GitHub repository:
+```
+git clone https://github.com/kinshuk-0/enverx-be-developer-assignment.git
+cd enverx-be-developer-assignment
 ```
 
-### Task Requirements
-1. Create a RESTful API for a simple blog application.
-2. Use Node.js and Express.js as the backend framework.
-3. Implement CRUD (Create, Read, Update, Delete) operations for blog posts.
-4. Store the blog posts in a dB
-5. Include validation for the API endpoints to ensure data integrity.
-6. Implement error handling and return appropriate HTTP status codes.
-7. Use Git for version control and host the project on GitHub.
-8. Write clear and concise documentation on how to set up and use the API.
-9. Use Typescript to get a Bonus point.
+- Install Dependencies: Install the project's dependencies using npm:
+```
+npm install
+```
 
-### Functional Requirements
-1. Set up a new Node.js project and initialize it with a package.json file.
-2. Create the necessary Express.js routes and controllers for CRUD operations on blog posts.
+- Database Configuration: Open the src/config/db.ts file and update the db object with your MySQL database configuration (user, password, database).
 
-- `GET /posts` - Get all blog posts (Mandatory: Apply sorting based on created Date, blog name and filters based on category).
-- `GET /posts/:id` - Get a specific blog post by ID.
-- `POST /posts` - Create a new blog post.
-- `PUT /posts/:id` - Update an existing blog post.
-- `DELETE /posts/:id` - Delete a blog post.
+**Database Initialization**
+- Create Database: Start by creating a new database to store your blog posts. You can use a MySQL client or a tool like MySQL Workbench to execute the following SQL query:
+```
+CREATE DATABASE your_database;
+```
 
-3. Implement validation for the API endpoints to ensure the data is correct and complete.
-4. Handle errors gracefully and return appropriate HTTP status codes (e.g., 404 for not found, 500 for server errors, etc.).
-5. Test the API endpoints using a tool like Postman or cURL.
-6. Write a README.md file with instructions on setting up the project, running it, and using the API.
-7. Initialize a Git repository, commit your code regularly, and push it to GitHub.
-8. Optionally, include any additional features or improvements you think would enhance the API.
+- Create Database Table: You need to create a database table to store blog posts:
+```
+CREATE TABLE blogs (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  title VARCHAR(255) NOT NULL,
+  content TEXT,
+  created_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  category VARCHAR(255)
+);
+```
 
-### Timeline
-The estimated time to complete this assignment is 6-7 hours, but it may vary based on your familiarity and experience with the technologies.
+**Starting the Server**
 
-### To Be Considered
-1. The submitted code should be plagiarism free otherwise your application will be disqualified
-2. Please complete the assignment and submit it to us by the submission deadline assigned to you. 
-3. follow the instructions carefully, as we will evaluate your code, documentation, and adherence to best practices. Once you have finished, please send us the GitHub repository link.
-4. If you have any questions or need further clarification, please don't hesitate to reach out to us at hr@enverx.com. We look forward to reviewing your work and discussing it with you in the next stage of the interview process.
+- Start the Server: To start the Express server, run the following command from the project directory:
+```
+npm start
+```
+- Server Running: The server will start on port 8082 by default.
+
+
+
+
+## **Node APIs** (Blog App)
+
+### Get all Blog Posts
+```
+const API_PATH   : '/posts'
+const API_METHOD : 'GET'
+
+export type request = {
+  category ?: string
+}
+
+export type response = [
+  {
+    id          : number,
+    title       : string,
+    content     : string,
+    createdDate : string,
+    category    : string
+  }
+]
+```
+
+### Get Blog Posts by ID
+```
+const API_PATH   : '/posts/:id'
+const API_METHOD : 'GET'
+
+export type request = {}
+
+export type response = [
+  {
+    id          : number,
+    title       : string,
+    content     : string,
+    createdDate : string,
+    category    : string
+  }
+]
+```
+
+### Create new Blog Posts
+```
+const API_PATH   : '/posts'
+const API_METHOD : 'POST'
+
+export type request = {
+  title     : string,
+  content   : string,
+  category  : string
+}
+
+export type response = {
+  id: number
+}
+```
+
+### Update Blog Posts by ID
+```
+const API_PATH   : '/posts/:id'
+const API_METHOD : 'PUT'
+
+export type request = {
+  title     : string,
+  content   : string,
+  category  : string
+}
+
+export type response = {}
+```
+
+### Delete Blog Posts by ID
+```
+const API_PATH   : '/posts/:id'
+const API_METHOD : 'DELETE'
+
+export type request = {}
+
+export type response = {}
+```
+***

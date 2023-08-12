@@ -6,5 +6,5 @@ export const db = mysql.createConnection({
     host    : 'localhost',
     user    : '',
     password: '',
-    database: 'blog_app_enverx'
+    database: ''
 })
