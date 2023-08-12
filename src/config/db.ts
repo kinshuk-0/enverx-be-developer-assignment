@@ -1,8 +1,8 @@
-import { createConnection } from 'mysql2/promise';
+import mysql from 'mysql2';
 
-export const db = createConnection({
+export const db = mysql.createConnection({
     host    : 'localhost',
     user    : 'root',
     password: 'root@123',
     database: 'blog_app_enverx'
-});
+})
