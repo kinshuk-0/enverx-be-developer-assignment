@@ -15,7 +15,10 @@
 git clone https://github.com/kinshuk-0/enverx-be-developer-assignment.git
 cd enverx-be-developer-assignment
 ```
-
+- Checkout the development branch:
+```
+git checkout development
+```
 - Install Dependencies: Install the project's dependencies using npm:
 ```
 npm install
